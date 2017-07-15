@@ -22,7 +22,8 @@ public class TestSubstitutionCiphers
     @Test
     public void test1GetCaesarCipher()
     {
-        assert SubstitutionCiphers.getCaesarCipher("abc", 1).equals("bcd") : "abc with a shift of 1 should return bcd";
+        assert SubstitutionCiphers.getCaesarCipher("abc", 1).equals("bcd") :
+                "abc with a shift of 1 should return bcd";
     }
 
     /**
@@ -31,16 +32,18 @@ public class TestSubstitutionCiphers
     @Test
     public void test2GetCaesarCipher()
     {
-        assert SubstitutionCiphers.getCaesarCipher("xyz", 1).equals("yza") : "xyz with a shift of 1 should return yza";
+        assert SubstitutionCiphers.getCaesarCipher("xyz", 1).equals("yza") :
+                "xyz with a shift of 1 should return yza";
     }
 
     /**
-     * Test shift of length of alphabet
+     * Test shift > 25 chars
      */
     @Test
     public void test3GetCaesarCipher()
     {
-        assert SubstitutionCiphers.getCaesarCipher("abc", 26).equals("abc") : "abc with a shift of 26 should return abc";
+        assert SubstitutionCiphers.getCaesarCipher("abc", 26).equals("abc") :
+                "abc with a shift of 26 should return abc";
     }
 
     /**
@@ -59,7 +62,9 @@ public class TestSubstitutionCiphers
         {
             thrown = true;
         }
-        assert (thrown) : "Illegal Argument Exception should have been thrown for -1 shift";
+        assert (thrown) :
+                "Illegal Argument Exception should have been thrown for "
+                + "-1 shift";
     }
 
     /**
@@ -77,7 +82,8 @@ public class TestSubstitutionCiphers
         {
             thrown = true;
         }
-        assert (thrown) : "Illegal Argument Exception should have been thrown for !";
+        assert (thrown) :
+                "Illegal Argument Exception should have been thrown for !";
     }
 
     /**
@@ -97,7 +103,8 @@ public class TestSubstitutionCiphers
     @Test
     public void test1GetRot13()
     {
-        assert SubstitutionCiphers.getRot13("abc").equals("nop") : "abc using Rot13 shoulf return nop";
+        assert SubstitutionCiphers.getRot13("abc").equals("nop") :
+                "abc using Rot13 shoulf return nop";
     }
 
     /**
@@ -106,7 +113,8 @@ public class TestSubstitutionCiphers
     @Test
     public void test2GetRot13()
     {
-        assert SubstitutionCiphers.getRot13("xyz").equals("klm") : "xyz using Rot13 should return klm";
+        assert SubstitutionCiphers.getRot13("xyz").equals("klm") :
+                "xyz using Rot13 should return klm";
     }
 
     /**
@@ -125,7 +133,8 @@ public class TestSubstitutionCiphers
         {
             thrown = true;
         }
-        assert (thrown) : "Illegal Argument Exception should have been thrown for !";
+        assert (thrown) :
+                "Illegal Argument Exception should have been thrown for !";
     }
 
     /**
@@ -134,7 +143,8 @@ public class TestSubstitutionCiphers
     @Test
     public void test4GetRot13()
     {
-        assert SubstitutionCiphers.getRot13("abc def").equals("nop qrs") : "abc def using Rot13 should return nop qrs";
+        assert SubstitutionCiphers.getRot13("abc def").equals("nop qrs") :
+                "abc def using Rot13 should return nop qrs";
     }
 
     //Rot 47 Tests
@@ -144,7 +154,8 @@ public class TestSubstitutionCiphers
     @Test
     public void test1GetRot47()
     {
-        assert SubstitutionCiphers.getRot47("abc").equals("234") : "abc using Rot47 should return 234";
+        assert SubstitutionCiphers.getRot47("abc").equals("234") :
+                "abc using Rot47 should return 234";
     }
 
     /**
@@ -153,7 +164,8 @@ public class TestSubstitutionCiphers
     @Test
     public void test2GetRot47()
     {
-        assert SubstitutionCiphers.getRot47("|}~").equals("MNO") : "xyz using Rot47 should return MNO";
+        assert SubstitutionCiphers.getRot47("|}~").equals("MNO") :
+                "xyz using Rot47 should return MNO";
     }
 
     /**
@@ -162,7 +174,8 @@ public class TestSubstitutionCiphers
     @Test
     public void test3GetRot47()
     {
-        assert SubstitutionCiphers.getRot47("abc |}~").equals("234 MNO") : "abc |}~ using Rot47 should return 234 MNO";
+        assert SubstitutionCiphers.getRot47("abc |}~").equals("234 MNO") :
+                "abc |}~ using Rot47 should return 234 MNO";
     }
 
     /**
@@ -181,7 +194,8 @@ public class TestSubstitutionCiphers
         {
             thrown = true;
         }
-        assert (thrown) : "Illegal Argument Exception should have been thrown for é";
+        assert (thrown) :
+                "Illegal Argument Exception should have been thrown for é";
     }
 
 }

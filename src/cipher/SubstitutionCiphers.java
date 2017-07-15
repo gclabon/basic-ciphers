@@ -11,8 +11,8 @@ package cipher;
 public abstract class SubstitutionCiphers
 {
 
-    private static final String LETTERS_26 = "abcdefghijklmnopqrstuvwxyz";
-    private static final String LETTERS_47 = "!\"#$%&'()*+,-./0123456789:"
+    static final String LETTERS_26 = "abcdefghijklmnopqrstuvwxyz";
+    static final String LETTERS_47 = "!\"#$%&'()*+,-./0123456789:"
             + ";<=>?@ABCDEFGHIJKLMNOPQRST"
             + "UVWXYZ\\[\\]^_`abcdefghijklm"
             + "nopqrstuvwxyz{|}~";
@@ -46,7 +46,8 @@ public abstract class SubstitutionCiphers
                 oArray = plainText.toCharArray();
             }
 
-            return getSubstitution(oArray, baseChars, shiftBy);
+            return getSubstitution(oArray, baseChars, shiftBy,
+                    useExtendedCharSet);
 
         }
         catch (Exception e)
@@ -66,7 +67,7 @@ public abstract class SubstitutionCiphers
      * @return substitutedString String containing substituted chars
      */
     static String getSubstitution(char[] oArray, String baseChars,
-            int shiftBy) throws IllegalArgumentException
+            int shiftBy, Boolean usingExtended) throws IllegalArgumentException
     {
         if (shiftBy < 0)
         {
@@ -79,21 +80,25 @@ public abstract class SubstitutionCiphers
             {
                 int cPosition = baseChars.indexOf(c);
                 int lALength = baseChars.length();
-
+                char nextChar;
                 if (c == ' ')
                 {
-                    substitutedString += " ";
+                    nextChar = c;
+                }
+                else if (!usingExtended && c == '.')
+                {
+                    nextChar = c;
                 }
                 else if ((cPosition + shiftBy) >= lALength)
                 {
-                    substitutedString += baseChars.charAt(
+                    nextChar = baseChars.charAt(
                             (cPosition + shiftBy) - lALength);
                 }
                 else
                 {
-                    substitutedString += baseChars.charAt(cPosition + shiftBy);
+                    nextChar = baseChars.charAt(cPosition + shiftBy);
                 }
-
+                substitutedString += nextChar;
             }
             return substitutedString;
         }
