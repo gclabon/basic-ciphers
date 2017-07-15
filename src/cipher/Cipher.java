@@ -56,15 +56,19 @@ public abstract class Cipher
             {
                 int cPosition = baseChars.indexOf(c);
                 int lALength = baseChars.length();
-                if ((cPosition + shiftBy) >= lALength)
+            
+                if (c == ' '){
+                    cipherText += " ";
+                }
+                else if ((cPosition + shiftBy) >= lALength)
                 {
-                    i = (cPosition + shiftBy) - lALength;
+                    cipherText += baseChars.charAt((cPosition + shiftBy) - lALength);
                 }
                 else
                 {
-                    i = (cPosition + shiftBy);
+                    cipherText += baseChars.charAt(cPosition + shiftBy);
                 }
-                cipherText += baseChars.charAt(i);
+                
             }
 
             return cipherText;
@@ -90,7 +94,7 @@ public abstract class Cipher
     {
         String lowerCasePT = plainText.toLowerCase();
         //Check plaintext contains only alphabetical chars
-        if (!lowerCasePT.matches("^[" + LETTERS_26 + "]*$"))
+        if (!lowerCasePT.matches("^[" + LETTERS_26 + "[ ]]*$"))
         {
             throw new IllegalArgumentException(
                     "Caesar Cipher cannot contain non-alphabetical characters");
@@ -114,7 +118,7 @@ public abstract class Cipher
     {
         String lowerCasePT = plainText.toLowerCase();
         //Check plainText contains only alphabetical chars
-        if (!lowerCasePT.matches("^[" + LETTERS_26 + "]*$"))
+        if (!lowerCasePT.matches("^[" + LETTERS_26 + "[ ]]*$"))
         {
             throw new IllegalArgumentException(
                     "Caesar Cipher cannot contain non-alphabetical characters");
@@ -135,7 +139,7 @@ public abstract class Cipher
      */
     public static String getRot47(String plainText)
     {
-        if (!plainText.matches("^[" + LETTERS_47 + "]*$"))
+        if (!plainText.matches("^[" + LETTERS_47 + "[ ]]*$"))
         {
             throw new IllegalArgumentException(
                     "Rot47 must contain only ASCII[33, 126] characters");
