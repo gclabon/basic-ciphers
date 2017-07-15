@@ -1,18 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cipher;
 
 /**
- * Simple abstract class to implement basic Ciphers (Caesar/Rot13/Rot47)
- * 
- * Cipher.java (UTF-8) cipher
+ * Simple abstract class to implement basic substitution ciphers
+ * (Caesar/Rot13/Rot47)
  *
- * @author Gareth Clabon. 12-Jul-2017 20:37:35
+ * SubstitutionCiphers.java (UTF-8) cipher
+ *
+ * @author Gareth Clabon
  */
-public abstract class Cipher
+public abstract class SubstitutionCiphers
 {
 
     private static final String LETTERS_26 = "abcdefghijklmnopqrstuvwxyz";
@@ -22,7 +18,7 @@ public abstract class Cipher
             + "nopqrstuvwxyz{|}~";
 
     /**
-     * Encodes a String using a simple alphabetical shift
+     * Encodes a String using a simple alphabetical shift/substitution
      *
      * @param useExtendedCharSet Boolean whether extended character set is
      * needed for rot47
@@ -30,7 +26,7 @@ public abstract class Cipher
      * @param shiftBy int number of Characters to shift by
      * @return cipherText String containing the encoded plainText
      */
-    private static String getShiftCipher(String plainText, int shiftBy,
+    private static String getSubstitutionCipher(String plainText, int shiftBy,
             boolean useExtendedCharSet)
     {
         try
@@ -56,19 +52,21 @@ public abstract class Cipher
             {
                 int cPosition = baseChars.indexOf(c);
                 int lALength = baseChars.length();
-            
-                if (c == ' '){
+
+                if (c == ' ')
+                {
                     cipherText += " ";
                 }
                 else if ((cPosition + shiftBy) >= lALength)
                 {
-                    cipherText += baseChars.charAt((cPosition + shiftBy) - lALength);
+                    cipherText += baseChars.charAt(
+                            (cPosition + shiftBy) - lALength);
                 }
                 else
                 {
                     cipherText += baseChars.charAt(cPosition + shiftBy);
                 }
-                
+
             }
 
             return cipherText;
@@ -81,7 +79,7 @@ public abstract class Cipher
     }
 
     /**
-     * Encodes a String using a simple Caesar Cipher
+     * Encodes a String using a simple Caesar Substitution Ciphers
      *
      * @throws IllegalArgumentException If plainText does not contain only
      * alphabetical chars.
@@ -101,12 +99,12 @@ public abstract class Cipher
         }
         else
         {
-            return getShiftCipher(lowerCasePT, shiftBy, false);
+            return getSubstitutionCipher(lowerCasePT, shiftBy, false);
         }
     }
 
     /**
-     * Encodes a String using a simple Rot13 alphabetical shift
+     * Encodes a String using a simple Rot13 alphabetical shift/substitution
      *
      * @throws IllegalArgumentException If plainText does not contain only
      * alphabetical chars.
@@ -125,12 +123,12 @@ public abstract class Cipher
         }
         else
         {
-            return getShiftCipher(lowerCasePT, 13, false);
+            return getSubstitutionCipher(lowerCasePT, 13, false);
         }
     }
 
     /**
-     * Encodes a String using a simple Rot47 ASCII shift
+     * Encodes a String using a simple Rot47 ASCII shift/substitution
      *
      * @throws IllegalArgumentException If plainText does not contain only
      * ASCII[33, 126] chars.
@@ -146,7 +144,7 @@ public abstract class Cipher
         }
         else
         {
-            return getShiftCipher(plainText, 47, true);
+            return getSubstitutionCipher(plainText, 47, true);
         }
     }
 

@@ -1,34 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import org.junit.Test;
 import cipher.*;
 
 /**
- * Basic JUnit tests for cipher class
+ * Basic JUnit tests for substitution cipher class
  *
- * @author Gareth Clabon. PI: E445736X
+ * @author Gareth Clabon.
  */
-public class TestCipher
+public class TestSubstitutionCiphers
 {
 
-    public TestCipher()
+    public TestSubstitutionCiphers()
     {
 
     }
-    
-    //Caesar Cipher Tests
 
+    //Caesar SubstitutionCiphers Tests
     /**
      * Test shift of 1 at beginning of alphabet
      */
     @Test
     public void test1GetCaesarCipher()
     {
-        assert Cipher.getCaesarCipher("abc", 1).equals("bcd") : "abc with a shift of 1 should return bcd";
+        assert SubstitutionCiphers.getCaesarCipher("abc", 1).equals("bcd") : "abc with a shift of 1 should return bcd";
     }
 
     /**
@@ -37,7 +31,7 @@ public class TestCipher
     @Test
     public void test2GetCaesarCipher()
     {
-        assert Cipher.getCaesarCipher("xyz", 1).equals("yza") : "xyz with a shift of 1 should return yza";
+        assert SubstitutionCiphers.getCaesarCipher("xyz", 1).equals("yza") : "xyz with a shift of 1 should return yza";
     }
 
     /**
@@ -46,7 +40,7 @@ public class TestCipher
     @Test
     public void test3GetCaesarCipher()
     {
-        assert Cipher.getCaesarCipher("abc", 26).equals("abc") : "abc with a shift of 26 should return abc";
+        assert SubstitutionCiphers.getCaesarCipher("abc", 26).equals("abc") : "abc with a shift of 26 should return abc";
     }
 
     /**
@@ -59,7 +53,7 @@ public class TestCipher
 
         try
         {
-            Cipher.getCaesarCipher("abc", -1);
+            SubstitutionCiphers.getCaesarCipher("abc", -1);
         }
         catch (IllegalArgumentException e)
         {
@@ -77,7 +71,7 @@ public class TestCipher
         Boolean thrown = false;
         try
         {
-            Cipher.getCaesarCipher("!", 1);
+            SubstitutionCiphers.getCaesarCipher("!", 1);
         }
         catch (IllegalArgumentException e)
         {
@@ -92,19 +86,18 @@ public class TestCipher
     @Test
     public void test6GetCaesarCipher()
     {
-        assert Cipher.getCaesarCipher("abc def", 1).equals("bcd efg") : "Should equal \"bcd efg\"";
+        assert SubstitutionCiphers.getCaesarCipher("abc def", 1).equals(
+                "bcd efg") : "Should equal \"bcd efg\"";
     }
 
-    
     //Rot13 Tests
-    
     /**
      * Test shift at start at alphabet
      */
     @Test
     public void test1GetRot13()
     {
-        assert Cipher.getRot13("abc").equals("nop") : "abc using Rot13 shoulf return nop";
+        assert SubstitutionCiphers.getRot13("abc").equals("nop") : "abc using Rot13 shoulf return nop";
     }
 
     /**
@@ -113,7 +106,7 @@ public class TestCipher
     @Test
     public void test2GetRot13()
     {
-        assert Cipher.getRot13("xyz").equals("klm") : "xyz using Rot13 should return klm";
+        assert SubstitutionCiphers.getRot13("xyz").equals("klm") : "xyz using Rot13 should return klm";
     }
 
     /**
@@ -126,7 +119,7 @@ public class TestCipher
 
         try
         {
-            Cipher.getRot13("!");
+            SubstitutionCiphers.getRot13("!");
         }
         catch (IllegalArgumentException e)
         {
@@ -141,18 +134,17 @@ public class TestCipher
     @Test
     public void test4GetRot13()
     {
-        assert Cipher.getRot13("abc def").equals("nop qrs") : "abc def using Rot13 should return nop qrs";
+        assert SubstitutionCiphers.getRot13("abc def").equals("nop qrs") : "abc def using Rot13 should return nop qrs";
     }
-    
-    //Rot 47 Tests
 
+    //Rot 47 Tests
     /**
      * Test shift at start of ASCII character string
      */
     @Test
     public void test1GetRot47()
     {
-        assert Cipher.getRot47("abc").equals("234") : "abc using Rot47 should return 234";
+        assert SubstitutionCiphers.getRot47("abc").equals("234") : "abc using Rot47 should return 234";
     }
 
     /**
@@ -161,17 +153,18 @@ public class TestCipher
     @Test
     public void test2GetRot47()
     {
-        assert Cipher.getRot47("|}~").equals("MNO") : "xyz using Rot47 should return MNO";
+        assert SubstitutionCiphers.getRot47("|}~").equals("MNO") : "xyz using Rot47 should return MNO";
     }
-    
+
     /**
      * Test Rot47 with spaces
      */
     @Test
     public void test3GetRot47()
     {
-        assert Cipher.getRot47("abc |}~").equals("234 MNO") : "abc |}~ using Rot47 should return 234 MNO";
+        assert SubstitutionCiphers.getRot47("abc |}~").equals("234 MNO") : "abc |}~ using Rot47 should return 234 MNO";
     }
+
     /**
      * Test cannot use illegal characters
      */
@@ -182,7 +175,7 @@ public class TestCipher
 
         try
         {
-            Cipher.getRot47("é");
+            SubstitutionCiphers.getRot47("é");
         }
         catch (IllegalArgumentException e)
         {
