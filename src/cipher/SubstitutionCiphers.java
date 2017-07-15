@@ -33,7 +33,6 @@ public abstract class SubstitutionCiphers
         {
             String baseChars;
             char[] oArray;
-            String cipherText = "";
 
             //If Rot47 use extended character set, otherwise use lower case
             if (useExtendedCharSet)
@@ -47,7 +46,35 @@ public abstract class SubstitutionCiphers
                 oArray = plainText.toCharArray();
             }
 
-            int i;
+            return getSubstitution(oArray, baseChars, shiftBy);
+
+        }
+        catch (Exception e)
+        {
+            throw new IllegalArgumentException(shiftBy
+                    + "is not a valid shift");
+        }
+    }
+
+    /**
+     * Performs character by character substitution on a char[]
+     *
+     * @throws IllegalArgumentException If shiftBy < 0
+     * @param oArray char[] original array
+     * @param baseChars String containing base characters to shift on
+     * @param shiftBy int number of places to shift to find char to substitute
+     * @return substitutedString String containing substituted chars
+     */
+    static String getSubstitution(char[] oArray, String baseChars,
+            int shiftBy) throws IllegalArgumentException
+    {
+        if (shiftBy < 0)
+        {
+            throw new IllegalArgumentException("Cannot shift by < 0");
+        }
+        else
+        {
+            String substitutedString = "";
             for (char c : oArray)
             {
                 int cPosition = baseChars.indexOf(c);
@@ -55,27 +82,22 @@ public abstract class SubstitutionCiphers
 
                 if (c == ' ')
                 {
-                    cipherText += " ";
+                    substitutedString += " ";
                 }
                 else if ((cPosition + shiftBy) >= lALength)
                 {
-                    cipherText += baseChars.charAt(
+                    substitutedString += baseChars.charAt(
                             (cPosition + shiftBy) - lALength);
                 }
                 else
                 {
-                    cipherText += baseChars.charAt(cPosition + shiftBy);
+                    substitutedString += baseChars.charAt(cPosition + shiftBy);
                 }
 
             }
+            return substitutedString;
+        }
 
-            return cipherText;
-        }
-        catch (Exception e)
-        {
-            throw new IllegalArgumentException(shiftBy
-                    + "is not a valid shift");
-        }
     }
 
     /**
