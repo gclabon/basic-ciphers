@@ -1,5 +1,7 @@
 package cipher;
 
+import Utils.Utilities;
+
 /**
  * Simple abstract class to implement basic substitution ciphers
  * (Caesar/Rot13/Rot47)
@@ -11,11 +13,6 @@ package cipher;
 public abstract class SubstitutionCiphers
 {
 
-    static final String LETTERS_26 = "abcdefghijklmnopqrstuvwxyz";
-    static final String LETTERS_47 = "!\"#$%&'()*+,-./0123456789:"
-            + ";<=>?@ABCDEFGHIJKLMNOPQRST"
-            + "UVWXYZ\\[\\]^_`abcdefghijklm"
-            + "nopqrstuvwxyz{|}~";
 
     /**
      * Encodes a String using a simple alphabetical shift/substitution
@@ -37,12 +34,12 @@ public abstract class SubstitutionCiphers
             //If Rot47 use extended character set, otherwise use lower case
             if (useExtendedCharSet)
             {
-                baseChars = LETTERS_47;
+                baseChars = Utilities.LETTERS_47;
                 oArray = plainText.toCharArray();
             }
             else
             {
-                baseChars = LETTERS_26;
+                baseChars = Utilities.LETTERS_26;
                 oArray = plainText.toCharArray();
             }
 
@@ -119,7 +116,7 @@ public abstract class SubstitutionCiphers
     {
         String lowerCasePT = plainText.toLowerCase();
         //Check plaintext contains only alphabetical chars
-        if (!lowerCasePT.matches("^[" + LETTERS_26 + "[ ]]*$"))
+        if (!lowerCasePT.matches("^[" + Utilities.LETTERS_26 + "[ ]]*$"))
         {
             throw new IllegalArgumentException(
                     "Caesar Cipher cannot contain non-alphabetical characters");
@@ -143,7 +140,7 @@ public abstract class SubstitutionCiphers
     {
         String lowerCasePT = plainText.toLowerCase();
         //Check plainText contains only alphabetical chars
-        if (!lowerCasePT.matches("^[" + LETTERS_26 + "[ ]]*$"))
+        if (!lowerCasePT.matches("^[" + Utilities.LETTERS_26 + "[ ]]*$"))
         {
             throw new IllegalArgumentException(
                     "Caesar Cipher cannot contain non-alphabetical characters");
@@ -164,7 +161,7 @@ public abstract class SubstitutionCiphers
      */
     public static String getRot47(String plainText)
     {
-        if (!plainText.matches("^[" + LETTERS_47 + "[ ]]*$"))
+        if (!plainText.matches("^[" + Utilities.LETTERS_47 + "[ ]]*$"))
         {
             throw new IllegalArgumentException(
                     "Rot47 must contain only ASCII[33, 126] characters");
